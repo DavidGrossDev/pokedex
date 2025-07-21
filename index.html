@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <dialog id="dialog_card" class="dialog-card" onclick="closeDialog()">
+        <div onclick="stopPropagation()">
+            <section>
+                <h2>bulbasaur</h2>
+            </section>
+            <section>img</section>
+            <section>hashshsa</section>
+            <section>wadwawdasdw</section>
+        </div>
+    </dialog>
     <header class="bckgrnd_dg">
         <div class="header-content content-limit">
             <div>Pokedex</div>
@@ -20,7 +30,7 @@
     </header>
     <main>
         <section class="main-content content-limit">
-            <div class="poke-card">
+            <div class="poke-card" onclick="openDialog()">
                 <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
                 <div class="card-img"></div>
                 <div class="card-footer bckgrnd_dg">type/s</div>
@@ -106,6 +116,8 @@
 
         </div>
     </footer>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
