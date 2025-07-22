@@ -8,18 +8,11 @@
     <title>Pokedex</title>
 </head>
 
-<body>
-    <dialog id="dialog_card" class="dialog-card" onclick="closeDialog()">
-        <div onclick="stopPropagation()">
-            <section>
-                <h2>bulbasaur</h2>
-            </section>
-            <section>img</section>
-            <section>hashshsa</section>
-            <section>wadwawdasdw</section>
-        </div>
-    </dialog>
-    <header class="bckgrnd_dg">
+<body onload="init()">
+    <div id="overlay" class="overlay d_none" onclick="closeOverlay()">
+        
+    </div>
+    <header class="bckgrnd-dg">
         <div class="header-content content-limit">
             <div>Pokedex</div>
             <div>
@@ -29,94 +22,20 @@
         </div>
     </header>
     <main>
-        <section class="main-content content-limit">
-            <div class="poke-card" onclick="openDialog()">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-            <div class="poke-card">
-                <div class="card-header bckgrnd_dg">#1 Bulbasaur</div>
-                <div class="card-img"></div>
-                <div class="card-footer bckgrnd_dg">type/s</div>
-            </div>
-
+        <section id="content_cards" class="main-content content-limit">
+            
         </section>
         <div class="load-nxt-btn content-limit">
             <button>load Next</button>
         </div>
     </main>
-    <footer class="bckgrnd_dg">
+    <footer class="bckgrnd-dg">
         <div class="footer-content content-limit">
 
         </div>
     </footer>
 
+    <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>
 </body>
 
