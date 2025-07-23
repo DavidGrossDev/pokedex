@@ -166,16 +166,53 @@ main {
 .description-content {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
-
 
 .overlay-card-btns {
     display: flex;
     justify-content: space-between;
     padding: 8px 16px;
     border-radius: 0 0 10px 10px;
+}
+
+.main-table {
+    margin: auto;
+}
+
+.main-table tr td:first-child {
+    display: flex;
+}
+
+.stat-container {
+    height: 200px;
+    width: 200px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.stat {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-bar {
+    width: 60%;
+    height: 8px;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.stat-value {
+    height: 100%;
+    background-color: red;
+    border-radius: 4px 0 0 4px;
 }
 
 .brd-lft {
