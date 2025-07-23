@@ -1,7 +1,7 @@
 function getContentCardsTemplate(index) {
     return `<div class="poke-card" onclick="openOverlay(${index})">
                 <div class="card-header bckgrnd-dg"><h2>${shownPokemon[index]['name']}</h2></div>
-                <div class="card-img"><img src="${shownPokemon[index]['img']}" alt=""></div>
+                <div id="bck_grd_${index}" class="card-img"><img src="${shownPokemon[index]['img']}" alt=""></div>
                 <div class="card-footer bckgrnd-dg">${shownPokemon[index]['types']}</div>
             </div>`
 }
@@ -18,7 +18,7 @@ function getOverlayTemplate(index) {
             <section class="overlay-card-description">
                 <div class="description-head">
                     <div class="brd-rgt" onclick="showMainContent(${index})">main</div>
-                    <div>stats</div>
+                    <div onclick="showStatsContent(${index})">stats</div>
                     <div class="brd-lft">evo chain</div>
                 </div>
                 <div id="content_description_${index}" class="description-content">
@@ -32,7 +32,7 @@ function getOverlayTemplate(index) {
 }
 
 function getMainTemplates(index, abilitiesString) {
-    return`<table>
+    return`<table class="main-table">
         <tr>
             <td>Height</td>
             <td>: ${shownPokemon[index].height} m</td>
@@ -50,4 +50,13 @@ function getMainTemplates(index, abilitiesString) {
             <td>: ${abilitiesString}</td>
         </tr>
     </table>`
+}
+
+function getStatTemplate(index, statsIndex) {
+    return `<div class="stat">
+                    <div class="stat-title">${shownPokemon[index]['stats'][statsIndex]['stat']['name']}</div>
+                    <div class="stat-bar">
+                        <div id="stat_value_${statsIndex}" class="stat-value"></div>
+                    </div>
+                </div>`
 }
