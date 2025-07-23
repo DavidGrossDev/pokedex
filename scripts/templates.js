@@ -2,7 +2,7 @@ function getContentCardsTemplate(index) {
     return `<div class="poke-card" onclick="openOverlay(${index})">
                 <div class="card-header bckgrnd-dg"><h2>${shownPokemon[index]['name']}</h2></div>
                 <div id="bck_grd_${index}" class="card-img"><img src="${shownPokemon[index]['img']}" alt=""></div>
-                <div class="card-footer bckgrnd-dg">${shownPokemon[index]['types']}</div>
+                <div class="card-footer bckgrnd-dg">${(shownPokemon[index]['types']).join(" ")}</div>
             </div>`
 }
 
@@ -11,9 +11,9 @@ function getOverlayTemplate(index) {
             <section class="card-header bckgrnd-dg">
                 <h2>${shownPokemon[index].name}</h2>
             </section>
-            <section class="overlay-card-img"><img src="${shownPokemon[index]['img']}" alt=""></section>
+            <section id="ovelay_bck_grd_${index}" class="overlay-card-img"><img src="${shownPokemon[index]['img']}" alt=""></section>
             <section class="card-footer bckgrnd-dg brd-rad-none">
-                ${shownPokemon[index]['types']}
+                ${(shownPokemon[index]['types']).join(" ")}
             </section>
             <section class="overlay-card-description">
                 <div class="description-head">
@@ -34,20 +34,20 @@ function getOverlayTemplate(index) {
 function getMainTemplates(index, abilitiesString) {
     return`<table class="main-table">
         <tr>
-            <td>Height</td>
-            <td>: ${shownPokemon[index].height} m</td>
+            <td><div>Height</div><div>:</div></td>
+            <td> ${shownPokemon[index].height} m</td>
         </tr>
         <tr>
-            <td>Weight</td>
-            <td>: ${shownPokemon[index].weight} kg</td>
+            <td><div>Weight</div><div>:</div></td>
+            <td> ${shownPokemon[index].weight} kg</td>
         </tr>
         <tr>
-            <td>Base experience</td>
-            <td>: ${shownPokemon[index].base_experience}</td>
+            <td><div>Base experience</div><div>:</div></td>
+            <td> ${shownPokemon[index].base_experience}</td>
         </tr>
         <tr>
-            <td>Abilities</td>
-            <td>: ${abilitiesString}</td>
+            <td><div>Abilities</div><div>:</div></td>
+            <td> ${abilitiesString}</td>
         </tr>
     </table>`
 }
