@@ -16,7 +16,6 @@ async function getPokemon() {
     for (let index = 0; index < countShownPokemon; index++) {
         let response2 = await fetch(responeToJson["results"][index]["url"]);
         let response2ToJson = await response2.json();
-         console.log(response2ToJson)
         shownPokemon.push(
             {
                 "name": response2ToJson['name'],
@@ -25,21 +24,21 @@ async function getPokemon() {
                 "height": (response2ToJson['height']) / 10,
                 "weight": (response2ToJson['weight']) /10,
                 "abilities": response2ToJson['abilities'],
-                "base_experience": response2ToJson['base_experience']
+                "base_experience": response2ToJson['base_experience'],
+                "stats" : response2ToJson['stats']
             }
         )
     }
     renderPokemon();
-    // console.log(shownPokemon);
+    console.log(shownPokemon);
 
 }
 
 function getTypes(response2ToJson) {
-    let currentTypes = "";
+    let currentTypes = [];
     for (let index = 0; index < response2ToJson['types'].length; index++) {
-        currentTypes += response2ToJson['types'][index]['type']['name'] + " ";
+        currentTypes.push(response2ToJson['types'][index]['type']['name']);
     }
-    currentTypes = currentTypes.trimEnd();
     return currentTypes;
 }
 
@@ -47,6 +46,7 @@ function renderPokemon() {
     let contentCardsRef = document.getElementById('content_cards');
     contentCardsRef.innerHTML = "";
     for (let index = 0; index < shownPokemon.length; index++) {
+        let bckGrdRef = document.getElementById(`bck_grd_${index}`);
         contentCardsRef.innerHTML += getContentCardsTemplate(index);
     }
 }
@@ -70,4 +70,18 @@ function showMainContent(index) {
     abilitiesString = abilitiesString.trimEnd();
     descriptionContentRef.innerHTML = getMainTemplates(index, abilitiesString);
 }
+
+function showStatsContent(index) {
+    let descriptionContentRef = document.getElementById(`content_description_${index}`);
+    descriptionContentRef.innerHTML = "";
+
+    for (let statsIndex = 0; statsIndex < shownPokemon[index]['stats'].length; statsIndex++) {
+        descriptionContentRef.innerHTML += getStatTemplate(index, statsIndex);
+        let statusRef = document.getElementById(`stat_value_${statsIndex}`);
+        let statValue = shownPokemon[index]['stats'][statsIndex]['base_stat'];
+        statValue = Math.round(statValue/2);
+        statusRef.style.width = `${statValue}%`;   
+    }
+}
+
 
