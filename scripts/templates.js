@@ -17,16 +17,16 @@ function getOverlayTemplate(index) {
             </section>
             <section class="overlay-card-description">
                 <div class="description-head">
-                    <div class="brd-rgt" onclick="showMainContent(${index})">main</div>
-                    <div onclick="showStatsContent(${index})">stats</div>
-                    <div class="brd-lft">evo chain</div>
+                    <div id="desc_main_content_${index}" class="main-btn brd-rgt" onclick="showMainContent(${index})">main</div>
+                    <div id="desc_stats_content_${index}" class="stats-btn" onclick="showStatsContent(${index})">stats</div>
+                    <div id="desc_evo_content_${index}" class="evo-btn brd-lft" onclick="showEvoChain(${index})">evo chain</div>
                 </div>
                 <div id="content_description_${index}" class="description-content">
                 </div>
             </section>
             <section class="overlay-card-btns bckgrnd-dg">
-                <button>Back</button>
-                <button>Forward</button>
+                <button onclick="showPreviousPokemon(${index})">Back</button>
+                <button onclick="showNextPokemon(${index})">Forward</button>
             </section>
         </div>`
 }
