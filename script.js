@@ -120,6 +120,7 @@ function openOverlay(index) {
     let bckGrdRef = document.getElementById(`bck_grd_${index}`);
     let overlayBckGrdRef = document.getElementById(`ovelay_bck_grd_${index}`);
     overlayBckGrdRef.style.backgroundColor = bckGrdRef.style.backgroundColor;
+    showMainContent(index);
 }
 
 function closeOverlay() {
@@ -134,7 +135,31 @@ function showMainContent(index) {
         abilitiesString += `${abilityIndex + 1}: ` + shownPokemon[index].abilities[abilityIndex]['ability']['name'] + " <br>";
     }
     abilitiesString = abilitiesString.trimEnd();
+    chosedDescPart(index, "main");
     descriptionContentRef.innerHTML = getMainTemplates(index, abilitiesString);
+}
+
+function chosedDescPart(index, param) {
+    let descMainBtnRef = document.getElementById(`desc_main_content_${index}`);
+    let descStatsBtnRef = document.getElementById(`desc_stats_content_${index}`);
+    let descEvoBtnRef = document.getElementById(`desc_evo_content_${index}`);
+    switch (param) {
+        case "main":
+            descMainBtnRef.style.borderBottomColor="orange";
+            descStatsBtnRef.style.borderBottomColor="";
+            descEvoBtnRef.style.borderBottomColor="";
+            break;
+        case "stats":
+            descMainBtnRef.style.borderBottomColor="";
+            descStatsBtnRef.style.borderBottomColor="orange";
+            descEvoBtnRef.style.borderBottomColor="";
+            break;
+        default:
+            descMainBtnRef.style.borderBottomColor="";
+            descStatsBtnRef.style.borderBottomColor="";
+            descEvoBtnRef.style.borderBottomColor="orange";
+            break;
+    }
 }
 
 function showStatsContent(index) {
@@ -148,6 +173,11 @@ function showStatsContent(index) {
         statValue = Math.round(statValue / 2);
         statusRef.style.width = `${statValue}%`;
     }
+    chosedDescPart(index, "stats");
+}
+
+function showEvoChain(index) {
+    chosedDescPart(index, "evo");
 }
 
 function addNextPokemon() {
@@ -159,4 +189,20 @@ function addNextPokemon() {
 
 }
 
+function showPreviousPokemon(index) {
+    if(index > 0) {
+        index--;
+    }else {
+        index = (shownPokemon.length-1)
+    }
+    openOverlay(index);
+}
 
+function showNextPokemon(index) {
+    if(index < (shownPokemon.length-1)) {
+        index++;
+    }else {
+        index = 0;
+    }
+    openOverlay(index);
+}
