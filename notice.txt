@@ -35,3 +35,84 @@ if (shownPokemon[index]['types'].indexOf("grass") == 0) {
         } else if (shownPokemon[index]['types'].indexOf("dark") == 0) {
             bckGrdRef.style.backgroundColor = "rgba(3, 6, 6)";
         }
+
+
+function getTypes(response2ToJson) {
+    let currentTypes = [];
+    for (let index = 0; index < response2ToJson['types'].length; index++) {
+        currentTypes.push(response2ToJson['types'][index]['type']['name']);
+    }
+    return currentTypes;
+}
+
+function renderPokemon() {
+    let contentCardsRef = document.getElementById('content_cards');
+    contentCardsRef.innerHTML = "";
+    for (let index = 0; index < shownPokemon.length; index++) {
+        contentCardsRef.innerHTML += getContentCardsTemplate(index);
+        let bckGrdRef = document.getElementById(`bck_grd_${index}`);
+        let bckGrdColor = "";
+
+        switch (0) {
+            case shownPokemon[index]['types'].indexOf("grass"):
+                bckGrdColor = "rgb(22, 171, 22)";
+                break;
+            case shownPokemon[index]['types'].indexOf("fire"):
+                bckGrdColor = "rgb(255, 166, 0)";
+                break;
+            case shownPokemon[index]['types'].indexOf("water"):
+                bckGrdColor = "rgba(23, 91, 114, 1)";
+                break;
+            case shownPokemon[index]['types'].indexOf("bug"):
+                bckGrdColor = "rgb(0, 100, 0)";
+                break;
+            case shownPokemon[index]['types'].indexOf("normal"):
+                bckGrdColor = "rgba(131, 119, 119, 1)";
+                break;
+            case shownPokemon[index]['types'].indexOf("poison"):
+                bckGrdColor = "rgb(153, 50, 204)";
+                break;
+            case shownPokemon[index]['types'].indexOf("electric"):
+                bckGrdColor = "#bbbb21f0";
+                break;
+            case shownPokemon[index]['types'].indexOf("ground"):
+                bckGrdColor = "rgb(185, 153, 64)";
+                break;
+            case shownPokemon[index]['types'].indexOf("fairy"):
+                bckGrdColor = "rgb(188, 143, 143)";
+                break;
+            case shownPokemon[index]['types'].indexOf("fighting"):
+                bckGrdColor = "rgb(165, 79, 30)";
+                break;
+            case shownPokemon[index]['types'].indexOf("flying"):
+                bckGrdColor = "rgb(211, 211, 211)";
+                break;
+            case shownPokemon[index]['types'].indexOf("psychic"):
+                bckGrdColor = "rgb(150, 51, 125)";
+                break;
+            case shownPokemon[index]['types'].indexOf("rock"):
+                bckGrdColor = "rgb(105, 47, 9)";
+                break;
+            case shownPokemon[index]['types'].indexOf("ice"):
+                bckGrdColor = "rgb(33, 158, 189)";
+                break;
+            case shownPokemon[index]['types'].indexOf("steel"):
+                bckGrdColor = "rgb(9, 110, 85)";
+                break;
+            case shownPokemon[index]['types'].indexOf("ghost"):
+                bckGrdColor = "rgb(50, 12, 70)";
+                break;
+            case shownPokemon[index]['types'].indexOf("dragon"):
+                bckGrdColor = "rgb(12, 95, 88)";
+                break;
+            case shownPokemon[index]['types'].indexOf("dark"):
+                bckGrdColor = "rgb(3, 6, 6)";
+                break;
+            default:
+                bckGrdColor = "rgb(0, 0, 0)";
+                break;
+        }
+        bckGrdRef.style.backgroundColor = bckGrdColor;
+    }
+
+}

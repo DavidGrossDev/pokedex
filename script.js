@@ -1,4 +1,4 @@
-let countShownPokemon = 20;
+let countShownPokemon = 2;
 let shownPokemon = [];
 const BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
 
@@ -37,9 +37,32 @@ async function getPokemon() {
 function getTypes(response2ToJson) {
     let currentTypes = [];
     for (let index = 0; index < response2ToJson['types'].length; index++) {
-        currentTypes.push(response2ToJson['types'][index]['type']['name']);
+        currentTypes.push(
+            {
+                "name": response2ToJson['types'][index]['type']['name'],
+                "url": response2ToJson['types'][index]['type']['url'],
+                "typeImg": getTypeImg(response2ToJson, index)
+            }
+        )
     }
+    // console.log(currentTypes);
     return currentTypes;
+}
+
+async function getTypeImg(response2ToJson, index) {
+    let currentTypeImgs = [];
+    let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
+    let responseTypeToJson = await responseType.json();
+    currentTypeImgs.push(responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon']);
+    // console.log(currentTypeImgs[0]);
+    return new Promise ((resolve) => {
+        setTimeout(() =>
+            {
+                resolve(currentTypeImgs);
+            },2000);
+        
+    });
+    
 }
 
 function renderPokemon() {
@@ -49,60 +72,60 @@ function renderPokemon() {
         contentCardsRef.innerHTML += getContentCardsTemplate(index);
         let bckGrdRef = document.getElementById(`bck_grd_${index}`);
         let bckGrdColor = "";
-       
-        switch (0) {
-            case shownPokemon[index]['types'].indexOf("grass"):
+
+        switch (shownPokemon[index]['types'][0]['name']) {
+            case "grass":
                 bckGrdColor = "rgb(22, 171, 22)";
                 break;
-            case shownPokemon[index]['types'].indexOf("fire"):
+            case "fire":
                 bckGrdColor = "rgb(255, 166, 0)";
                 break;
-            case shownPokemon[index]['types'].indexOf("water"):
+            case "water":
                 bckGrdColor = "rgba(23, 91, 114, 1)";
                 break;
-            case shownPokemon[index]['types'].indexOf("bug"):
+            case "bug":
                 bckGrdColor = "rgb(0, 100, 0)";
                 break;
-            case shownPokemon[index]['types'].indexOf("normal"):
+            case "normal":
                 bckGrdColor = "rgba(131, 119, 119, 1)";
                 break;
-            case shownPokemon[index]['types'].indexOf("poison"):
+            case "poison":
                 bckGrdColor = "rgb(153, 50, 204)";
                 break;
-            case shownPokemon[index]['types'].indexOf("electric"):
+            case "electric":
                 bckGrdColor = "#bbbb21f0";
                 break;
-            case shownPokemon[index]['types'].indexOf("ground"):
+            case "ground":
                 bckGrdColor = "rgb(185, 153, 64)";
                 break;
-            case shownPokemon[index]['types'].indexOf("fairy"):
+            case "fairy":
                 bckGrdColor = "rgb(188, 143, 143)";
                 break;
-            case shownPokemon[index]['types'].indexOf("fighting"):
-                bckGrdColor = "rgb(165, 79, 30)";    
+            case "fighting":
+                bckGrdColor = "rgb(165, 79, 30)";
                 break;
-            case shownPokemon[index]['types'].indexOf("flying"):
+            case "flying":
                 bckGrdColor = "rgb(211, 211, 211)";
                 break;
-            case shownPokemon[index]['types'].indexOf("psychic"):
+            case "psychic":
                 bckGrdColor = "rgb(150, 51, 125)";
                 break;
-            case shownPokemon[index]['types'].indexOf("rock"):
+            case "rock":
                 bckGrdColor = "rgb(105, 47, 9)";
                 break;
-            case shownPokemon[index]['types'].indexOf("ice"):
+            case "ice":
                 bckGrdColor = "rgb(33, 158, 189)";
                 break;
-            case shownPokemon[index]['types'].indexOf("steel"):
+            case "steel":
                 bckGrdColor = "rgb(9, 110, 85)";
                 break;
-            case shownPokemon[index]['types'].indexOf("ghost"):
+            case "ghost":
                 bckGrdColor = "rgb(50, 12, 70)";
                 break;
-            case shownPokemon[index]['types'].indexOf("dragon"):
+            case "dragon":
                 bckGrdColor = "rgb(12, 95, 88)";
                 break;
-            case shownPokemon[index]['types'].indexOf("dark"):
+            case "dark":
                 bckGrdColor = "rgb(3, 6, 6)";
                 break;
             default:
@@ -139,25 +162,27 @@ function showMainContent(index) {
     descriptionContentRef.innerHTML = getMainTemplates(index, abilitiesString);
 }
 
-function chosedDescPart(index, param) {
+function chosedDescPart(index, chosedItem) {
     let descMainBtnRef = document.getElementById(`desc_main_content_${index}`);
     let descStatsBtnRef = document.getElementById(`desc_stats_content_${index}`);
     let descEvoBtnRef = document.getElementById(`desc_evo_content_${index}`);
-    switch (param) {
+    descMainBtnRef.style.borderBottomColor = "";
+    descStatsBtnRef.style.borderBottomColor = "";
+    descEvoBtnRef.style.borderBottomColor = "";
+    markChosedDescPart(descMainBtnRef, descStatsBtnRef, descEvoBtnRef, chosedItem);
+
+}
+
+function markChosedDescPart(descMainBtnRef, descStatsBtnRef, descEvoBtnRef, chosedItem) {
+    switch (chosedItem) {
         case "main":
-            descMainBtnRef.style.borderBottomColor="orange";
-            descStatsBtnRef.style.borderBottomColor="";
-            descEvoBtnRef.style.borderBottomColor="";
+            descMainBtnRef.style.borderBottomColor = "orange";
             break;
         case "stats":
-            descMainBtnRef.style.borderBottomColor="";
-            descStatsBtnRef.style.borderBottomColor="orange";
-            descEvoBtnRef.style.borderBottomColor="";
+            descStatsBtnRef.style.borderBottomColor = "orange";
             break;
         default:
-            descMainBtnRef.style.borderBottomColor="";
-            descStatsBtnRef.style.borderBottomColor="";
-            descEvoBtnRef.style.borderBottomColor="orange";
+            descEvoBtnRef.style.borderBottomColor = "orange";
             break;
     }
 }
@@ -190,18 +215,18 @@ function addNextPokemon() {
 }
 
 function showPreviousPokemon(index) {
-    if(index > 0) {
+    if (index > 0) {
         index--;
-    }else {
-        index = (shownPokemon.length-1)
+    } else {
+        index = (shownPokemon.length - 1)
     }
     openOverlay(index);
 }
 
 function showNextPokemon(index) {
-    if(index < (shownPokemon.length-1)) {
+    if (index < (shownPokemon.length - 1)) {
         index++;
-    }else {
+    } else {
         index = 0;
     }
     openOverlay(index);

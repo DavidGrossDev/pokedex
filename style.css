@@ -106,6 +106,10 @@ main {
     border-radius: 0 0 10px 10px;
 }
 
+.type-img {
+    height: 20px;
+}
+
 .overlay {
     position: absolute;
     top: 0;
