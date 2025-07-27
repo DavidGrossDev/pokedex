@@ -1,4 +1,4 @@
-let countShownPokemon = 2;
+let countShownPokemon = 400;
 let shownPokemon = [];
 const BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
 
@@ -20,7 +20,7 @@ async function getPokemon() {
             {
                 "name": response2ToJson['name'],
                 "img": response2ToJson['sprites']['other']['home']['front_default'],
-                "types": getTypes(response2ToJson),
+                "types": await getTypes(response2ToJson),
                 "height": (response2ToJson['height']) / 10,
                 "weight": (response2ToJson['weight']) / 10,
                 "abilities": response2ToJson['abilities'],
@@ -34,35 +34,27 @@ async function getPokemon() {
 
 }
 
-function getTypes(response2ToJson) {
+async function getTypes(response2ToJson) {
     let currentTypes = [];
     for (let index = 0; index < response2ToJson['types'].length; index++) {
         currentTypes.push(
             {
                 "name": response2ToJson['types'][index]['type']['name'],
                 "url": response2ToJson['types'][index]['type']['url'],
-                "typeImg": getTypeImg(response2ToJson, index)
+                "typeImg": await getTypeImg(response2ToJson, index)
             }
         )
     }
-    // console.log(currentTypes);
+    // console.log(currentTypes[0].typeImg);
     return currentTypes;
 }
 
 async function getTypeImg(response2ToJson, index) {
-    let currentTypeImgs = [];
-    let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
-    let responseTypeToJson = await responseType.json();
-    currentTypeImgs.push(responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon']);
-    // console.log(currentTypeImgs[0]);
-    return new Promise ((resolve) => {
-        setTimeout(() =>
-            {
-                resolve(currentTypeImgs);
-            },2000);
-        
-    });
-    
+        let currentTypeImgs = "";
+        let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
+        let responseTypeToJson = await responseType.json();
+        currentTypeImgs += responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon'];
+        return currentTypeImgs;
 }
 
 function renderPokemon() {
@@ -70,6 +62,7 @@ function renderPokemon() {
     contentCardsRef.innerHTML = "";
     for (let index = 0; index < shownPokemon.length; index++) {
         contentCardsRef.innerHTML += getContentCardsTemplate(index);
+        renderPokemonTypeImgs(index);
         let bckGrdRef = document.getElementById(`bck_grd_${index}`);
         let bckGrdColor = "";
 
@@ -133,6 +126,15 @@ function renderPokemon() {
                 break;
         }
         bckGrdRef.style.backgroundColor = bckGrdColor;
+    }
+
+}
+
+function renderPokemonTypeImgs(index) {
+    let typeImgRef = document.getElementById(`type_imgs_${index}`);
+    typeImgRef.innerHTML = "";
+    for (let typeImgIndex = 0; typeImgIndex < shownPokemon[index]['types'].length; typeImgIndex++) {
+        typeImgRef.innerHTML += getTypeImgTemplate(index, typeImgIndex);
     }
 
 }

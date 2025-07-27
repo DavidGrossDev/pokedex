@@ -104,6 +104,7 @@ main {
 .card-footer {
     height: 56px;
     border-radius: 0 0 10px 10px;
+    gap: 8px;
 }
 
 .type-img {

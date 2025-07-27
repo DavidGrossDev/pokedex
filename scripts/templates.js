@@ -2,8 +2,12 @@ function getContentCardsTemplate(index) {
     return `<div class="poke-card" onclick="openOverlay(${index})">
                 <div class="card-header bckgrnd-dg"><h2>${shownPokemon[index]['name']}</h2></div>
                 <div id="bck_grd_${index}" class="card-img"><img src="${shownPokemon[index]['img']}" alt=""></div>
-                <div class="card-footer bckgrnd-dg"><img class="type-img" src="${shownPokemon[index]['types'][0]['typeImg']}" alt=""></div>
+                <div id="type_imgs_${index}" class="card-footer bckgrnd-dg"></div>
             </div>`
+}
+
+function getTypeImgTemplate(index, typeImgIndex) {
+    return `<img class="type-img" src="${shownPokemon[index]['types'][typeImgIndex]['typeImg']}" alt=""></img>`
 }
 
 function getOverlayTemplate(index) {
