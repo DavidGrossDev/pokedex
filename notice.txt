@@ -116,3 +116,20 @@ function renderPokemon() {
     }
 
 }
+
+function searchFunction() {
+    let input = document.getElementById('search_input');
+    let filter = input.value.toUpperCase();
+    let contentCardRef = document.getElementById('content_cards');
+    let pokemonName = contentCardRef.getElementsByTagName('section');
+
+    for (let indexName = 0; indexName < shownPokemon.length; indexName++) {
+        let txt = pokemonName[indexName].getElementsByTagName('h2')[0];
+        let txtValue = txt.textContent || txt.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            pokemonName[indexName].style.display = "";
+        } else {
+            pokemonName[indexName].style.display = "none";
+        }
+    }
+}
