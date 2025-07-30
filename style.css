@@ -22,6 +22,18 @@ body {
     font-size: 20px;
 }
 
+.header-content>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+header img {
+    height: 24px;
+    transform: rotate(30deg);
+}
+
 header,
 footer {
     width: 100%;
@@ -40,24 +52,40 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     overflow-y: scroll;
     scrollbar-width: none;
 }
 
 .main-content {
     flex: 1;
-    padding: 30px 80px;
+    padding: 24px 80px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 32px;
 }
 
 .load-nxt-btn {
-    height: 40px;
     padding: 8px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    gap: 8px;
+}
+
+.load-nxt-btn>button {
+    width: 80px;
+    padding: 4px;
+    /* border-width: 0; */
+    border-radius: 6px;
+    background-color: lightgray;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(190, 190, 190);
 }
 
 .content-limit {
@@ -109,6 +137,7 @@ main {
 
 .type-img {
     height: 20px;
+    filter: contrast(1.5);
 }
 
 .overlay {
@@ -128,7 +157,6 @@ main {
     width: 360px;
     border: 2px solid black;
     border-radius: 13px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -160,7 +188,7 @@ main {
 }
 
 .description-head>div {
-    width: 120px;
+    width: 50%;
     height: 100%;
     background-color: rgb(3, 87, 129);
     display: flex;
@@ -180,7 +208,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .overlay-card-btns {
@@ -234,12 +261,47 @@ main {
     border-radius: 4px 0 0 4px;
 }
 
+.loading-spinner {
+    z-index: 1;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 32, 48);
+}
+
+.spinner {
+    height: 250px;
+    width: 250px;
+    background-image: url('./assets/img/pokeball.png');
+    background-position: center;
+    background-size: cover;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .brd-lft {
     border-left: 1px solid rgba(0, 0, 0, 0.6);
 }
 
 .brd-rgt {
     border-right: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.txt-transf-capi {
+    text-transform: capitalize;
 }
 
 .brd-rad-none {
@@ -250,3 +312,25 @@ main {
     display: none;
 }
 
+@media (max-width: 1440px) {
+    .content-limit {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-content {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 430px) {
+    .overlay-card {
+        width: 300px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
