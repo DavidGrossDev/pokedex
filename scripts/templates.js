@@ -1,9 +1,9 @@
 function getContentCardsTemplate(index) {
-    return `<div class="poke-card" onclick="openOverlay(${index})">
-                <div class="card-header bckgrnd-dg"><h2>${shownPokemon[index]['name']}</h2></div>
+    return `<section class="poke-card" onclick="openOverlay(${index})">
+                <div class="card-header bckgrnd-dg"><h2 class="txt-transf-capi" id="pokemon_name_${index}">${shownPokemon[index]['name']}</h2></div>
                 <div id="bck_grd_${index}" class="card-img"><img src="${shownPokemon[index]['img']}" alt=""></div>
                 <div id="type_imgs_${index}" class="card-footer bckgrnd-dg"></div>
-            </div>`
+            </section>`
 }
 
 function getTypeImgTemplate(index, typeImgIndex) {
@@ -15,15 +15,14 @@ function getOverlayTemplate(index) {
             <section class="card-header bckgrnd-dg">
                 <h2>${shownPokemon[index].name}</h2>
             </section>
-            <section id="ovelay_bck_grd_${index}" class="overlay-card-img"><img src="${shownPokemon[index]['img']}" alt=""></section>
-            <section class="card-footer bckgrnd-dg brd-rad-none">
+            <section id="overlay_bck_grd_${index}" class="overlay-card-img"><img src="${shownPokemon[index]['img']}" alt=""></section>
+            <section id="overlay_type_imgs_${index}" class="card-footer bckgrnd-dg brd-rad-none">
                 
             </section>
             <section class="overlay-card-description">
                 <div class="description-head">
                     <div id="desc_main_content_${index}" class="main-btn brd-rgt" onclick="showMainContent(${index})">main</div>
-                    <div id="desc_stats_content_${index}" class="stats-btn" onclick="showStatsContent(${index})">stats</div>
-                    <div id="desc_evo_content_${index}" class="evo-btn brd-lft" onclick="showEvoChain(${index})">evo chain</div>
+                    <div id="desc_stats_content_${index}" class="stats-btn brd-lft" onclick="showStatsContent(${index})">stats</div>
                 </div>
                 <div id="content_description_${index}" class="description-content">
                 </div>
