@@ -4,37 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/img/pokeball.png">
     <link rel="stylesheet" href="./style.css">
     <title>Pokedex</title>
 </head>
 
 <body onload="init()">
     <div id="overlay" class="overlay d_none" onclick="closeOverlay()">
-
     </div>
     <header class="bckgrnd-dg">
         <div class="header-content content-limit">
-            <div>Pokedex</div>
-            <div>
-                <input type="text">
-                <button>Search</button>
-            </div>
+            <div><img src="./assets/img/pokeball.png" alt="">Pokedex</div>
+            <form onsubmit="searchFunction(); return false">
+                <input type="text" id="search_input" minlength="3">
+                <button type="submit">Search</button>
+            </form>
         </div>
     </header>
     <main>
+        <div id="loading_spinner" class="loading-spinner d_none">
+            <div class="spinner"></div>
+        </div>
         <section id="content_cards" class="main-content content-limit">
 
         </section>
         <div class="load-nxt-btn content-limit">
             <button onclick="addNextPokemon()">load Next</button>
+            <button onclick="loadAllPokemon()">load All</button>
         </div>
     </main>
 
     <footer class="bckgrnd-dg">
         <div class="footer-content content-limit">
-
         </div>
     </footer>
+    <script src="./scripts/bckgrd.js"></script>
     <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>
 </body>
