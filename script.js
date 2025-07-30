@@ -1,21 +1,28 @@
-let countShownPokemon = 400;
+let countShownPokemon = 20;
 let shownPokemon = [];
+let maxCountPokemon = 0;
 const BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
 
 let overlayRef = document.getElementById('overlay');
 
-
 function init() {
+    showLoadingSpinner();
     getPokemon();
 }
 
 async function getPokemon() {
     let response = await fetch(BASE_URL);
     let responeToJson = await response.json();
+    maxCountPokemon = responeToJson['count'];
+    //console.log(responeToJson);
+
+
 
     for (let index = 0; index < countShownPokemon; index++) {
         let response2 = await fetch(responeToJson["results"][index]["url"]);
         let response2ToJson = await response2.json();
+        // console.log(response2ToJson);
+
         shownPokemon.push(
             {
                 "name": response2ToJson['name'],
@@ -25,13 +32,14 @@ async function getPokemon() {
                 "weight": (response2ToJson['weight']) / 10,
                 "abilities": response2ToJson['abilities'],
                 "base_experience": response2ToJson['base_experience'],
-                "stats": response2ToJson['stats']
+                "stats": response2ToJson['stats'],
+                "id": response2ToJson['id']
             }
         )
     }
     renderPokemon();
+    hideLoadingSpinner();
     console.log(shownPokemon);
-
 }
 
 async function getTypes(response2ToJson) {
@@ -45,16 +53,15 @@ async function getTypes(response2ToJson) {
             }
         )
     }
-    // console.log(currentTypes[0].typeImg);
     return currentTypes;
 }
 
 async function getTypeImg(response2ToJson, index) {
-        let currentTypeImgs = "";
-        let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
-        let responseTypeToJson = await responseType.json();
-        currentTypeImgs += responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon'];
-        return currentTypeImgs;
+    let currentTypeImgs = "";
+    let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
+    let responseTypeToJson = await responseType.json();
+    currentTypeImgs += responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon'];
+    return currentTypeImgs;
 }
 
 function renderPokemon() {
@@ -63,71 +70,8 @@ function renderPokemon() {
     for (let index = 0; index < shownPokemon.length; index++) {
         contentCardsRef.innerHTML += getContentCardsTemplate(index);
         renderPokemonTypeImgs(index);
-        let bckGrdRef = document.getElementById(`bck_grd_${index}`);
-        let bckGrdColor = "";
-
-        switch (shownPokemon[index]['types'][0]['name']) {
-            case "grass":
-                bckGrdColor = "rgb(22, 171, 22)";
-                break;
-            case "fire":
-                bckGrdColor = "rgb(255, 166, 0)";
-                break;
-            case "water":
-                bckGrdColor = "rgba(23, 91, 114, 1)";
-                break;
-            case "bug":
-                bckGrdColor = "rgb(0, 100, 0)";
-                break;
-            case "normal":
-                bckGrdColor = "rgba(131, 119, 119, 1)";
-                break;
-            case "poison":
-                bckGrdColor = "rgb(153, 50, 204)";
-                break;
-            case "electric":
-                bckGrdColor = "#bbbb21f0";
-                break;
-            case "ground":
-                bckGrdColor = "rgb(185, 153, 64)";
-                break;
-            case "fairy":
-                bckGrdColor = "rgb(188, 143, 143)";
-                break;
-            case "fighting":
-                bckGrdColor = "rgb(165, 79, 30)";
-                break;
-            case "flying":
-                bckGrdColor = "rgb(211, 211, 211)";
-                break;
-            case "psychic":
-                bckGrdColor = "rgb(150, 51, 125)";
-                break;
-            case "rock":
-                bckGrdColor = "rgb(105, 47, 9)";
-                break;
-            case "ice":
-                bckGrdColor = "rgb(33, 158, 189)";
-                break;
-            case "steel":
-                bckGrdColor = "rgb(9, 110, 85)";
-                break;
-            case "ghost":
-                bckGrdColor = "rgb(50, 12, 70)";
-                break;
-            case "dragon":
-                bckGrdColor = "rgb(12, 95, 88)";
-                break;
-            case "dark":
-                bckGrdColor = "rgb(3, 6, 6)";
-                break;
-            default:
-                bckGrdColor = "rgb(0, 0, 0)";
-                break;
-        }
-        bckGrdRef.style.backgroundColor = bckGrdColor;
+        getBckGrdForCard(index);
     }
-
 }
 
 function renderPokemonTypeImgs(index) {
@@ -136,15 +80,17 @@ function renderPokemonTypeImgs(index) {
     for (let typeImgIndex = 0; typeImgIndex < shownPokemon[index]['types'].length; typeImgIndex++) {
         typeImgRef.innerHTML += getTypeImgTemplate(index, typeImgIndex);
     }
-
 }
 
 function openOverlay(index) {
     overlayRef.classList.remove('d_none');
     overlayRef.innerHTML = getOverlayTemplate(index);
     let bckGrdRef = document.getElementById(`bck_grd_${index}`);
-    let overlayBckGrdRef = document.getElementById(`ovelay_bck_grd_${index}`);
+    let overlayBckGrdRef = document.getElementById(`overlay_bck_grd_${index}`);
+    let typeRef = document.getElementById(`type_imgs_${index}`);
+    let overlayTypeRef = document.getElementById(`overlay_type_imgs_${index}`)
     overlayBckGrdRef.style.backgroundColor = bckGrdRef.style.backgroundColor;
+    overlayTypeRef.innerHTML = typeRef.innerHTML;
     showMainContent(index);
 }
 
@@ -167,24 +113,19 @@ function showMainContent(index) {
 function chosedDescPart(index, chosedItem) {
     let descMainBtnRef = document.getElementById(`desc_main_content_${index}`);
     let descStatsBtnRef = document.getElementById(`desc_stats_content_${index}`);
-    let descEvoBtnRef = document.getElementById(`desc_evo_content_${index}`);
     descMainBtnRef.style.borderBottomColor = "";
     descStatsBtnRef.style.borderBottomColor = "";
-    descEvoBtnRef.style.borderBottomColor = "";
-    markChosedDescPart(descMainBtnRef, descStatsBtnRef, descEvoBtnRef, chosedItem);
+    markChosedDescPart(descMainBtnRef, descStatsBtnRef, chosedItem);
 
 }
 
-function markChosedDescPart(descMainBtnRef, descStatsBtnRef, descEvoBtnRef, chosedItem) {
+function markChosedDescPart(descMainBtnRef, descStatsBtnRef, chosedItem) {
     switch (chosedItem) {
         case "main":
             descMainBtnRef.style.borderBottomColor = "orange";
             break;
-        case "stats":
-            descStatsBtnRef.style.borderBottomColor = "orange";
-            break;
         default:
-            descEvoBtnRef.style.borderBottomColor = "orange";
+            descStatsBtnRef.style.borderBottomColor = "orange";
             break;
     }
 }
@@ -203,17 +144,12 @@ function showStatsContent(index) {
     chosedDescPart(index, "stats");
 }
 
-function showEvoChain(index) {
-    chosedDescPart(index, "evo");
-}
-
 function addNextPokemon() {
-    if (countShownPokemon < 100000) {
+    if (countShownPokemon < maxCountPokemon) {
         shownPokemon = [];
         countShownPokemon += 20;
-        getPokemon();
+        init();
     }
-
 }
 
 function showPreviousPokemon(index) {
@@ -232,4 +168,39 @@ function showNextPokemon(index) {
         index = 0;
     }
     openOverlay(index);
+}
+
+function loadAllPokemon() {
+    console.log(maxCountPokemon);
+
+    shownPokemon = [];
+    countShownPokemon = maxCountPokemon;
+    init();
+}
+
+function searchFunction() {
+    let input = document.getElementById('search_input');
+    let filter = input.value.toUpperCase();
+    let contentCardRef = document.getElementById('content_cards');
+    let pokemonName = contentCardRef.getElementsByTagName('section');
+
+    for (let indexName = 0; indexName < pokemonName.length; indexName++) {
+        let txt = pokemonName[indexName].getElementsByTagName('h2')[0];
+        let txtValue = txt.textContent || txt.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            pokemonName[indexName].style.display = "";
+        } else {
+            pokemonName[indexName].style.display = "none";
+        }
+    }
+}
+
+function showLoadingSpinner() {
+    let spinnerRef = document.getElementById('loading_spinner');
+    spinnerRef.classList.remove('d_none');
+}
+
+function hideLoadingSpinner() {
+    let spinnerRef = document.getElementById('loading_spinner');
+    spinnerRef.classList.add('d_none');
 }
