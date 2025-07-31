@@ -217,6 +217,15 @@ button:hover {
     border-radius: 0 0 10px 10px;
 }
 
+.overlay-card-btns img {
+    height: 26px;
+}
+
+.overlay-card-btns img:hover {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
 .main-table {
     margin: auto;
     width: 80%;
@@ -302,6 +311,10 @@ button:hover {
 
 .txt-transf-capi {
     text-transform: capitalize;
+}
+
+.img-transf-rotate-180deg {
+    transform: rotate(180deg);
 }
 
 .brd-rad-none {

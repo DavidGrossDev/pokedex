@@ -28,8 +28,8 @@ function getOverlayTemplate(index) {
                 </div>
             </section>
             <section class="overlay-card-btns bckgrnd-dg">
-                <button onclick="showPreviousPokemon(${index})">Back</button>
-                <button onclick="showNextPokemon(${index})">Forward</button>
+                <img onclick="showPreviousPokemon(${index})" src="./assets/img/arrow.png" alt="">
+                <img class="img-transf-rotate-180deg" onclick="showNextPokemon(${index})" src="./assets/img/arrow.png" alt="">
             </section>
         </div>`
 }

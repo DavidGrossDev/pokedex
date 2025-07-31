@@ -14,16 +14,18 @@ async function getPokemon() {
     let response = await fetch(BASE_URL);
     let responeToJson = await response.json();
     maxCountPokemon = responeToJson['count'];
-    //console.log(responeToJson);
-
-
-
     for (let index = 0; index < countShownPokemon; index++) {
         let response2 = await fetch(responeToJson["results"][index]["url"]);
         let response2ToJson = await response2.json();
-        // console.log(response2ToJson);
+        pushInShownPokemon(response2ToJson);
+        
+    }
+    renderPokemon();
+    hideLoadingSpinner();
+}
 
-        shownPokemon.push(
+async function pushInShownPokemon(response2ToJson) {
+    shownPokemon.push(
             {
                 "name": response2ToJson['name'],
                 "img": response2ToJson['sprites']['other']['home']['front_default'],
@@ -36,10 +38,6 @@ async function getPokemon() {
                 "id": response2ToJson['id']
             }
         )
-    }
-    renderPokemon();
-    hideLoadingSpinner();
-    console.log(shownPokemon);
 }
 
 async function getTypes(response2ToJson) {
@@ -116,7 +114,6 @@ function chosedDescPart(index, chosedItem) {
     descMainBtnRef.style.borderBottomColor = "";
     descStatsBtnRef.style.borderBottomColor = "";
     markChosedDescPart(descMainBtnRef, descStatsBtnRef, chosedItem);
-
 }
 
 function markChosedDescPart(descMainBtnRef, descStatsBtnRef, chosedItem) {
@@ -133,7 +130,6 @@ function markChosedDescPart(descMainBtnRef, descStatsBtnRef, chosedItem) {
 function showStatsContent(index) {
     let descriptionContentRef = document.getElementById(`content_description_${index}`);
     descriptionContentRef.innerHTML = "";
-
     for (let statsIndex = 0; statsIndex < shownPokemon[index]['stats'].length; statsIndex++) {
         descriptionContentRef.innerHTML += getStatTemplate(index, statsIndex);
         let statusRef = document.getElementById(`stat_value_${statsIndex}`);

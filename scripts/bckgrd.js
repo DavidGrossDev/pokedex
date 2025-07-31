@@ -7,7 +7,7 @@ function getBckGrdForCard(index) {
             bckGrdColor = "rgb(60, 175, 37)";
             break;
         case "fire":
-            bckGrdColor = "rgba(230, 90, 45, 0.8)";
+            bckGrdColor = "rgb(230, 90, 45)";
             break;
         case "water":
             bckGrdColor = "rgb(37, 135, 235)";
@@ -22,7 +22,7 @@ function getBckGrdForCard(index) {
             bckGrdColor = "rgb(138, 72, 192)";
             break;
         case "electric":
-            bckGrdColor = "rgba(230, 200, 5, 0.8)";
+            bckGrdColor = "rgb(230, 200, 5)";
             break;
         case "ground":
             bckGrdColor = "rgb(174, 109, 25)";
