@@ -1,8 +1,8 @@
-function getBckGrdForCard(index) {
+function getBckGrdForCard(array, index) {
     let bckGrdRef = document.getElementById(`bck_grd_${index}`);
     let bckGrdColor = "";
 
-    switch (shownPokemon[index]['types'][0]['name']) {
+    switch (array[index]['types'][0]['name']) {
         case "grass":
             bckGrdColor = "rgb(60, 175, 37)";
             break;
