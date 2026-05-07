@@ -22,3 +22,8 @@ The project allows users to browse and search Pokémon while displaying detailed
   <li>JavaScript</li>
   <li>PokéAPI</li>
 </ul>
+
+<h2>Preview</h2>
+
+<img src="./assets/screenshots/pokedex_landing.png" width="800"/>
+
