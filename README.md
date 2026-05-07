@@ -1,10 +1,11 @@
 <div align="center">
 
-  # Pokédex
-</div>
+# Pokédex
 
-An interactive Pokédex web application using data from the PokéAPI.
-The project allows users to browse and search Pokémon while displaying detailed information such as images, types, and stats.
+An interactive Pokédex web application using data from the PokéAPI.  
+Browse and search Pokémon while viewing detailed information such as images, types, and stats.
+
+</div>
 
 <h2>Features</h2>
 
@@ -19,12 +20,15 @@ The project allows users to browse and search Pokémon while displaying detailed
 
 <h2>Technologies</h2>
 
-<ul>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-  <li>PokéAPI</li>
-</ul>
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+  
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+  
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  
+  <img src="https://img.shields.io/badge/Pok%C3%A9API-FFCB05?style=for-the-badge"/>
+</p>
 
 <h2>Preview</h2>
 
@@ -35,7 +39,11 @@ The project allows users to browse and search Pokémon while displaying detailed
 </div>
 
 <h2>Live Demo</h2>
-<a href="https://pokedex.gross-david.de/" target="_blank">View Project</a>
+<p align="center">
+  <a href="https://pokedex.gross-david.de/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-View_Project-3fb950?style=for-the-badge"/>
+  </a>
+</p>
 
 <h2>Installation</h2>
 <p>Clone the repository:</p>
@@ -44,7 +52,9 @@ The project allows users to browse and search Pokémon while displaying detailed
 git clone https://github.com/DavidGrossDev/pokedex.git
 ```
 
-<p>Open the project folder, then simply open index.html in your browser.</p>
+<p>
+Open the project folder and launch <code>index.html</code> in your browser.
+</p>
 
 <h2>Project Structure</h2>
 
@@ -79,9 +89,8 @@ pokedex/
 
 <h2>API Used</h2>
 <p>This project uses the free Pokémon API:</p>
-<a href="https://pokeapi.co/?utm_source=chatgpt.com" target="_blank">PokéAPI</a>
+<a href="https://pokeapi.co/">PokéAPI</a>
 
 <h2>Author</h2>
 <p>David Groß</p>
-<p>Github:
-<a href="https://github.com/DavidGrossDev">DavidGrossDev</a></p>
+<p>GitHub: <a href="https://github.com/DavidGrossDev">DavidGrossDev</a></p>
