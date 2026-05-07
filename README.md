@@ -12,7 +12,6 @@ Browse and search Pokémon while viewing detailed information such as images, ty
   <li>Detailed Pokémon stats and information</li>
   <li>Responsive design</li>
   <li>Dynamic rendering with JavaScript</li>
-  <li>Modern user interface</li>
 </ul>
 
 <h2>Technologies</h2>
