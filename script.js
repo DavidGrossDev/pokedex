@@ -59,7 +59,7 @@ async function getTypeImg(response2ToJson, index) {
     let currentTypeImgs = "";
     let responseType = await fetch(response2ToJson['types'][index]['type']['url']);
     let responseTypeToJson = await responseType.json();
-    currentTypeImgs += responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-and-shining-pearl']['name_icon'];
+    currentTypeImgs += responseTypeToJson['sprites']['generation-viii']['brilliant-diamond-shining-pearl']['name_icon'];
     return currentTypeImgs;
 }
 
