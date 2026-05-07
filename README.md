@@ -25,5 +25,9 @@ The project allows users to browse and search Pokémon while displaying detailed
 
 <h2>Preview</h2>
 
-<img src="./assets/screenshots/pokedex_landing.png" width="800"/>
+<img src="./assets/screenshots/landing.png" width="800"/>
+
+<img src="./assets/screenshots/details.png" width="800"/>
+
+<img src="./assets/screenshots/search.png" width="800"/>
 
