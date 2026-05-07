@@ -61,3 +61,17 @@ pokedex/
         ├── details.png
         └── search.png
 ```
+<h2>What I Learned</h2>
+<p>Through this project I improved my skills in:</p>
+<ul>
+  <li>Working with APIs</li>
+  <li>Fetching and handling asynchronous data</li>
+  <li>DOM manipulation</li>
+  <li>Responsive web design</li>
+  <li>JavaScript event handling</li>
+  <li>Dynamic UI rendering</li>
+</ul>
+
+<h2>API Used</h2>
+<p>This project uses the free Pokémon API:</p>
+<a href="https://pokeapi.co/?utm_source=chatgpt.com">PokéAPI</a>
