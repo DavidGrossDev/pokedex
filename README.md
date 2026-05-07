@@ -1,10 +1,7 @@
 <div align="center">
-
-# Pokédex
-
+<h1>Pokédex</h1> 
 An interactive Pokédex web application using data from the PokéAPI.  
 Browse and search Pokémon while viewing detailed information such as images, types, and stats.
-
 </div>
 
 <h2>Features</h2>
