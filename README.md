@@ -25,9 +25,32 @@ The project allows users to browse and search Pokémon while displaying detailed
 
 <h2>Preview</h2>
 
-<img src="./assets/screenshots/landing.png" width="800"/>
+<div align="center" >
+  <img src="./assets/screenshots/landing.png" width="32%"/>
+  <img src="./assets/screenshots/details.png" width="32%"/>
+  <img src="./assets/screenshots/search.png" width="32%"/>
+</div>
 
-<img src="./assets/screenshots/details.png" width="800"/>
+<h2>Installation</h2>
 
-<img src="./assets/screenshots/search.png" width="800"/>
+<p>Clone the repository:</p>
+git clone https://github.com/DavidGrossDev/pokedex
 
+<p>Open the project folder:</p>
+cd pokedex
+
+<p>Then simply open index.html in your browser.</p>
+
+<h2>Project Structure</h2>
+<p>
+  pokedex/<br>
+  │<br>
+  ├── index.html<br>
+  ├── style.css<br>
+  ├── script.js<br>
+  ├── scripts/<br>
+  <div>
+    ├── bckgrd.js<br>
+    └── templates.js
+  └── assets/<br>
+</p>
