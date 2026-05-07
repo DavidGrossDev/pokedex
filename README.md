@@ -1,4 +1,7 @@
-<h1>Pokédex</h1>
+<div align="center">
+
+  # Pokédex
+</div>
 
 An interactive Pokédex web application using data from the PokéAPI.
 The project allows users to browse and search Pokémon while displaying detailed information such as images, types, and stats.
@@ -7,8 +10,8 @@ The project allows users to browse and search Pokémon while displaying detailed
 
 <ul>
   <li>Fetch Pokémon data from the PokéAPI</li>
-  <li>Search for Pokémon(Names)</li>
-  <li>Detailed Pokémon view</li>
+  <li>Search for Pokémon by name</li>
+  <li>Detailed Pokémon stats and information</li>
   <li>Responsive design</li>
   <li>Dynamic rendering with JavaScript</li>
   <li>Modern user interface</li>
@@ -31,15 +34,17 @@ The project allows users to browse and search Pokémon while displaying detailed
   <img src="./assets/screenshots/search.png" width="32%"/>
 </div>
 
+<h2>Live Demo</h2>
+<a href="https://pokedex.gross-david.de/" target="_blank">View Project</a>
+
 <h2>Installation</h2>
-
 <p>Clone the repository:</p>
-git clone https://github.com/DavidGrossDev/pokedex
 
-<p>Open the project folder:</p>
-cd pokedex
+```bash
+git clone https://github.com/DavidGrossDev/pokedex.git
+```
 
-<p>Then simply open index.html in your browser.</p>
+<p>Open the project folder, then simply open index.html in your browser.</p>
 
 <h2>Project Structure</h2>
 
@@ -74,4 +79,9 @@ pokedex/
 
 <h2>API Used</h2>
 <p>This project uses the free Pokémon API:</p>
-<a href="https://pokeapi.co/?utm_source=chatgpt.com">PokéAPI</a>
+<a href="https://pokeapi.co/?utm_source=chatgpt.com" target="_blank">PokéAPI</a>
+
+<h2>Author</h2>
+<p>David Groß</p>
+<p>Github:
+<a href="https://github.com/DavidGrossDev">DavidGrossDev</a></p>
