@@ -45,7 +45,7 @@ Browse and search Pokémon while viewing detailed information such as images, ty
 <p>Clone the repository:</p>
 
 ```bash
-git clone https://github.com/DavidGrossDev/pokedex
+git clone https://github.com/DavidGrossDev/pokedex.git
 ```
 
 <p>
