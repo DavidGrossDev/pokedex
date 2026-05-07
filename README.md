@@ -42,15 +42,22 @@ cd pokedex
 <p>Then simply open index.html in your browser.</p>
 
 <h2>Project Structure</h2>
-<p>
-  pokedex/<br>
-  │<br>
-  ├── index.html<br>
-  ├── style.css<br>
-  ├── script.js<br>
-  ├── scripts/<br>
-  <div>
-    ├── bckgrd.js<br>
-    └── templates.js
-  └── assets/<br>
-</p>
+
+```text
+pokedex/
+│
+├── index.html
+├── style.css
+├── script.js
+├── scripts/
+│   ├── bckgrd.js
+│   └── templates.js
+└── assets/
+    ├── img/
+    │   ├── arrow.png
+    │   └── pokeball.png
+    └── screenshots/
+        ├── landing.png
+        ├── details.png
+        └── search.png
+```
